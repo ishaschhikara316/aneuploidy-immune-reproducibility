@@ -59,7 +59,7 @@ but cannot confirm.
 - **Effect attenuation:** median |β_nonTCGA| / |β_TCGA| = **0.58 [95% CI 0.35–0.74]** — the CI
   excludes 1, so effects are genuinely smaller, not merely less significant.
 
-## Is it tumour-type composition? No
+## Is it tumour-type composition? Descriptively, no
 
 The non-TCGA cohort is 38% lymphoid and has a different histology mix, so we matched on histology:
 
@@ -73,8 +73,10 @@ The non-TCGA cohort is 38% lymphoid and has a different histology mix, so we mat
 
 Restricting TCGA to the shared histologies **leaves its effect sizes unchanged** (0.082 → 0.084);
 only significance falls, and that is pure sample-size loss (717 → 139). In the non-TCGA cohort the
-effect sizes are consistently smaller (0.031–0.056) in every stratum. So the difference is in the
-**effect magnitude**, not the tumour types.
+effect sizes are consistently smaller (0.031–0.056) in every stratum. Descriptively, then, the gap
+is in **effect magnitude** rather than tumour-type mix — but note that the *formal* test of exactly
+this comparison (next section) does not reach significance, so this is an observation, not a
+demonstrated result.
 
 ## Formal test of the cohort effect — does NOT reach significance
 
