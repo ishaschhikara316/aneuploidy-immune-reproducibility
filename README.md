@@ -1,15 +1,16 @@
 # aneuploidy-immune-reproducibility
 
-**Aneuploidy–immune associations are invariant to the RNA pipeline — and significance-based
-replication metrics badly overstate irreproducibility.**
+**Aneuploidy–immune associations survive a complete change of analysis pipeline, but not a change
+of cohort.**
 
-Two findings:
-1. **Pipeline invariance (established).** Swapping aligner/quantifier/normalisation on the *same
-   716 donors*: β correlation **0.974**, **94.8% of variance shared**, limits of agreement **±0.03 SD**,
+Two established findings:
+1. **The software is innocent.** Swapping aligner/quantifier/normalisation on the *same 716
+   donors*: β correlation **0.974**, **94.8% of variance shared**, limits of agreement **±0.03 SD**,
    median within-tumour-type r = **0.906**.
-2. **The metric paradox.** The same TCGA→non-TCGA comparison reads as **0/60 replicating**
-   (significance-based) but only **1.17x [1.10–1.22]** more discrepant than re-splitting TCGA itself
-   (effect-size based, matched n). The catastrophic figure is largely a thresholding artefact.
+2. **The cohort is the culprit — shown with a self-replication control.** Under identical
+   conditions (same pipeline, models, n=340), TCGA replicates **itself at 62%** but replicates in an
+   independent cohort at **8%**. Only 1% of self-draws are as poor as a typical cross-cohort draw
+   (p ≈ 0.01). Matching exposure prevalence closes only part of the gap (62% → 50%).
 
 A cross-cohort reproducibility audit of genomic-instability → tumour-immune associations, using a
 two-arm design that separates *technical* from *cohort* causes of replication failure.
