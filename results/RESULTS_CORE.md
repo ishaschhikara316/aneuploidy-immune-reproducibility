@@ -124,6 +124,22 @@ alternative explanation — closes only part of the gap (62% → 50%), nowhere n
 than it replicates in an independent cohort, with sample size, pipeline, exposure definitions,
 models and exposure prevalence all held constant.
 
+### Verification: the gap is not tumour-type composition
+
+The comparison above uses TCGA (23 histologies) vs non-TCGA (8, of which 38% lymphoid), so it
+confounds consortium with tumour type. We therefore rebuilt both replication arms to contain the
+**identical histologies in identical numbers** (Kidney-RCC 47, Liver-HCC 49, Ovary-AdenoCA 20;
+n = 116 per arm — all solid tumours, no lymphoid), with the same TCGA discovery sample feeding both:
+
+| replication set | median replication rate [95%] |
+|---|--:|
+| TCGA (self) | **54%** [25–100%] |
+| non-TCGA (cross) | **0%** [0–9%] |
+
+Gap **+54 points**; only **1%** of self-draws are as poor as the median cross-draw. **The cohort
+effect survives with tumour-type composition held identical**, and is likewise not explained by
+exposure prevalence (matching WGD prevalence gives 50% vs 8%).
+
 ### Why our earlier, weaker tests missed this
 
 A composition-matched permutation (p=0.086) and a calibrated mean-|Δβ| comparison (1.17x, p=0.30)

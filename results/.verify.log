@@ -1,0 +1,17 @@
+shared histologies usable: {'Kidney-RCC': np.int64(47), 'Liver-HCC': np.int64(49), 'Ovary-AdenoCA': np.int64(20)}
+matched replication-set size per arm: 116
+discovery pool (TCGA, disjoint from replication pool): 585
+# Verification: cohort effect with tumour-type composition held identical
+
+Both replication arms are drawn from the **same histologies with the same number of donors each** ({'Kidney-RCC': np.int64(47), 'Liver-HCC': np.int64(49), 'Ovary-AdenoCA': np.int64(20)}), total n = 116 per arm. Discovery is the same TCGA sample in both arms (n = 340, disjoint from the replication pool). The only difference between arms is the consortium.
+
+| replication set | draws | median replication rate [95%] |
+|---|--:|--:|
+| TCGA (self) | 91 | **54%** [25%–100%] |
+| non-TCGA (cross) | 91 | **0%** [0%–9%] |
+
+- gap (self − cross): **+54%**
+- fraction of self-draws as poor as the median cross-draw: **1%**
+
+**The gap survives with composition held identical — the cohort effect is real and is not explained by differing tumour types.**
+
