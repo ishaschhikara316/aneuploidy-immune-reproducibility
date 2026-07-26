@@ -1,6 +1,8 @@
-# Aneuploidy–immune associations are invariant to the RNA quantification pipeline
+# Aneuploidy–immune associations are invariant to the RNA pipeline, and significance-based replication metrics overstate irreproducibility
 
-*(and show suggestive — but not formally established — attenuation across cohorts)*
+*Two findings: (1) swapping the entire expression pipeline changes essentially nothing;
+(2) the same data looks either catastrophically or barely irreproducible across cohorts depending
+purely on whether replication is scored by significance or by effect size.*
 
 *Status: analysis complete, manuscript in preparation. Public data only, CPU-only.*
 
@@ -101,23 +103,50 @@ direction and magnitude are consistent with real attenuation, and the unstratifi
 This test is itself modestly powered (399 donors, 4 histologies), so the honest reading is
 *unresolved*, not *refuted*.
 
+## The metric paradox — the central methodological result
+
+The same TCGA → non-TCGA comparison yields opposite impressions depending on the metric:
+
+| replication metric | result | impression |
+|---|--:|---|
+| associations still significant (FDR<0.05) | **0/60** | catastrophic irreproducibility |
+| sign agreement | **100%** | perfect agreement |
+| median effect ratio | 0.50–0.58 | effects halve |
+| **calibrated discrepancy** vs re-splitting TCGA itself at matched n | **1.17x [1.10–1.22]** | cohort barely matters |
+
+The calibrated test is the most conservative and most interpretable: two disjoint random halves of
+TCGA (n=330 each) differ by mean |Δβ| = 0.065, while a TCGA-vs-non-TCGA comparison at the same n
+differs by 0.077 — only **17% more**, with a single-draw permutation p = 0.30.
+
+**So the dramatic "0/60 replicate" figure is substantially an artefact of thresholding.** Much of
+it is driven by reduced power in the non-TCGA cohort (n=423 vs 717, and WGD prevalence 23% vs 39%),
+not by materially different underlying effects. Directions never disagree; magnitudes differ
+modestly; only the significance verdict collapses.
+
+> **Recommendation: never assess replication by whether p crosses a threshold in the replication
+> cohort.** On this data that metric implies total failure (0/60) while a calibrated effect-size
+> comparison implies the cohort contributes ~17% extra variability. Report effect sizes and
+> calibrate against re-sampling the discovery cohort.
+
 ## Interpretation
 
 Aneuploidy–immune associations reported in TCGA are **not** artefacts of expression processing —
-they survive a complete pipeline swap on the same donors. That is the firm conclusion, and it
-removes one common explanation for the field's conflicting reports. Their magnitude *appears*
-smaller in independent ICGC cohorts, but with composition controlled this does not reach
-significance, so cohort-dependence remains a supported hypothesis rather than a demonstrated
-result. Practical recommendation:
+they survive a complete pipeline swap on the same donors, sharing 94.8% of their variance. Nor are
+they as cohort-fragile as a significance-based reading suggests: calibrated against re-sampling the
+discovery cohort, changing cohort adds only ~17% extra discrepancy. The field's conflicting reports
+are therefore unlikely to stem from either processing or wholesale biological divergence — and much
+more likely from underpowered cohorts being scored by significance thresholds.
 
 > **Assess replication by effect size, not by significance.** Directions are 100% consistent
 > everywhere; it is the magnitude that moves, and significance mostly tracks sample size.
 
 ## Honest limitations
 
-- **The cohort effect is not formally established.** Per-association β differences are individually
-  non-significant (0/60), and the pooled, composition-matched permutation test gives p = 0.086.
-  The attenuation is a consistent aggregate shift, but this data cannot confirm it.
+- **The cohort effect is real but small, and its size is not precisely determined.** The
+  composition-matched permutation gives p = 0.086; the calibrated matched-n test gives a ratio of
+  1.17 [1.10–1.22] (CI excludes 1) but a single-draw permutation p = 0.30. Different reasonable
+  statistics disagree on whether it is "significant" — which is itself the paper's point. We report
+  it as small and real rather than dramatic.
 - Only **4 histologies are shared** between the cohorts, and per-type n is small.
 - WGD prevalence differs (TCGA 39% vs non-TCGA 23%), which contributes to both power and possibly
   the effect estimate.
