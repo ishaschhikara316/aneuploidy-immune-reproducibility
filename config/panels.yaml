@@ -1,0 +1,30 @@
+# Immune / tumour-phenotype gene panels scored identically in both RNA pipelines.
+# Sources: standard field-consensus marker sets (cytolytic = Rooney 2015; T-cell-inflamed =
+# Ayers 2017 JCI; APM/ISG/sensor as used in the aneuploidy-immune literature).
+panels:
+  cytolytic:        [GZMA, PRF1]
+  cd8_tcell:        [CD8A, CD8B]
+  apm:              [HLA-A, HLA-B, HLA-C, B2M, TAP1, TAP2, NLRC5, PSMB8, PSMB9, TAPBP]
+  isg:              [ISG15, MX1, OAS1, IFIT1, IFIT3, IRF7, RSAD2, IFI6, USP18, HERC5, IFI44, STAT1]
+  cgas_sting:       [CGAS, MB21D1, C6orf150, STING1, TMEM173, TBK1, IRF3, IFI16, DDX58]
+  tcell_inflamed:   [CXCL9, CXCL10, CD3D, CD3E, IDO1, LAG3, PSMB10, HLA-DRA, CCL5, CXCR6,
+                     TIGIT, CD27, CD274, PDCD1LG2, CMKLR1, NKG7, STAT1]
+  treg:             [FOXP3, IL2RA, CTLA4, IKZF2]
+  myeloid:          [CD68, CD163, CSF1R, ITGAM, AIF1]
+  tgfb_stroma:      [TGFB1, COL1A1, ACTA2, FAP, THBS2]
+  exhaustion:       [PDCD1, HAVCR2, LAG3, TIGIT, CTLA4]
+  proliferation:    [MKI67, PCNA, TOP2A, CCNB1, AURKA]
+
+# Genomic-instability exposures. All come from ONE shared donor table
+# (Cortés-Ciriano 2020 supp.), so their definition is identical in every cohort/arm —
+# only the RNA source or the donor set changes between comparisons.
+exposures:
+  WGD:        {col: ploidy, kind: binary_gt, cut: 2.5, label: "whole-genome doubling"}
+  ploidy:     {col: ploidy, kind: continuous,  label: "ploidy (continuous)"}
+  chromo:     {col: chromo_high, kind: binary, label: "chromothripsis (high)"}
+  chromo_any: {col: chromo_any, kind: binary, label: "chromothripsis (any)"}
+  PGA:        {col: PGA, kind: continuous, label: "percent genome altered"}
+  n_high:     {col: n_high, kind: continuous, label: "n chromothripsis events"}
+
+# Confounders adjusted in every model (purity is from the same shared table).
+confounders: [purity, proliferation]

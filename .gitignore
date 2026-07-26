@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.DS_Store
+._*
+data/analysis_matrix.parquet
