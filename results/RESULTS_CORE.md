@@ -1,4 +1,6 @@
-# Aneuploidy–immune associations are robust to RNA pipeline but fragile across cohorts
+# Aneuploidy–immune associations are invariant to the RNA quantification pipeline
+
+*(and show suggestive — but not formally established — attenuation across cohorts)*
 
 *Status: analysis complete, manuscript in preparation. Public data only, CPU-only.*
 
@@ -42,7 +44,13 @@ Significant associations (FDR<0.05): **S1 = 29/60, S2 = 27/60, S3 = 0/60**.
 
 **Changing the entire RNA pipeline — different aligner, quantifier and normalisation — barely
 perturbs these associations (β correlation 0.97, every association replicates). Changing the
-cohort halves the effect sizes and eliminates statistical significance entirely.**
+cohort halves the effect sizes and eliminates statistical significance.**
+
+**Status of the two halves.** The pipeline result is definitive (paired design, 716 donors). The
+cohort attenuation is *suggestive but not formally established*: once tumour-type composition is
+also held constant, a pooled permutation test gives **p = 0.086** (see below). We therefore report
+the pipeline invariance as the finding, and cohort-dependence as a hypothesis this data supports
+but cannot confirm.
 
 ## Is the non-TCGA null just lower power? No
 
@@ -68,20 +76,46 @@ only significance falls, and that is pure sample-size loss (717 → 139). In the
 effect sizes are consistently smaller (0.031–0.056) in every stratum. So the difference is in the
 **effect magnitude**, not the tumour types.
 
+## Formal test of the cohort effect — does NOT reach significance
+
+Per-association differences were individually underpowered (0/60), so we pooled across all
+associations while resampling donors, restricted to PCAWG RNA and the 4 shared histologies — thus
+holding **pipeline and composition both constant** (n=399; TCGA 139 / non-TCGA 260). Betas were
+oriented by the sign of the discovery estimate and compared via a permutation test that shuffles
+the cohort label *within* each histology.
+
+| quantity | value |
+|---|--:|
+| mean oriented β, TCGA | +0.098 |
+| mean oriented β, non-TCGA | −0.008 |
+| observed Δ | **+0.106** |
+| permutation null (500 draws) | mean +0.031, 95th pct +0.126 |
+| **one-sided permutation p** | **0.086** |
+| bootstrap Δ [95% CI] | +0.106 [−0.000, +0.217] |
+
+**The cohort effect is therefore not formally significant once composition is controlled.** The
+direction and magnitude are consistent with real attenuation, and the unstratified effect ratio
+(0.58 [0.35–0.74]) excludes 1, but the strict, composition-matched test does not clear p<0.05.
+This test is itself modestly powered (399 donors, 4 histologies), so the honest reading is
+*unresolved*, not *refuted*.
+
 ## Interpretation
 
 Aneuploidy–immune associations reported in TCGA are **not** artefacts of expression processing —
-they survive a complete pipeline swap on the same donors. But their magnitude is cohort-dependent,
-shrinking roughly by half in independent ICGC cohorts. This provides a concrete, quantitative
-explanation for why the field's reports conflict, and a practical recommendation:
+they survive a complete pipeline swap on the same donors. That is the firm conclusion, and it
+removes one common explanation for the field's conflicting reports. Their magnitude *appears*
+smaller in independent ICGC cohorts, but with composition controlled this does not reach
+significance, so cohort-dependence remains a supported hypothesis rather than a demonstrated
+result. Practical recommendation:
 
 > **Assess replication by effect size, not by significance.** Directions are 100% consistent
 > everywhere; it is the magnitude that moves, and significance mostly tracks sample size.
 
 ## Honest limitations
 
-- Per-association β differences between S2 and S3 are **not individually significant (0/60)** —
-  the attenuation is a consistent *aggregate* shift rather than dramatic per-association reversals.
+- **The cohort effect is not formally established.** Per-association β differences are individually
+  non-significant (0/60), and the pooled, composition-matched permutation test gives p = 0.086.
+  The attenuation is a consistent aggregate shift, but this data cannot confirm it.
 - Only **4 histologies are shared** between the cohorts, and per-type n is small.
 - WGD prevalence differs (TCGA 39% vs non-TCGA 23%), which contributes to both power and possibly
   the effect estimate.

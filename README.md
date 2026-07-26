@@ -1,6 +1,10 @@
 # aneuploidy-immune-reproducibility
 
-**Aneuploidy–immune associations are robust to the RNA pipeline but fragile across cohorts.**
+**Aneuploidy–immune associations are invariant to the RNA quantification pipeline.**
+
+> Cohort-dependence is *suggested* (effects roughly halve, 19% replication) but is **not formally
+> established**: with tumour-type composition also held constant, a pooled permutation test gives
+> **p = 0.086**. Reported as a hypothesis, not a result.
 
 A cross-cohort reproducibility audit of genomic-instability → tumour-immune associations, using a
 two-arm design that separates *technical* from *cohort* causes of replication failure.
@@ -31,8 +35,9 @@ thing changes at a time:
 Significant (FDR<0.05): S1 = 29/60, S2 = 27/60, **S3 = 0/60**.
 
 Swapping the entire RNA pipeline barely moves these associations. Swapping the cohort halves them.
-Ruled out: **power** (down-sampled TCGA at n=423 still gives ~18 hits vs 0) and **tumour-type
-composition** (TCGA effect sizes are unchanged when restricted to shared histologies).
+Power is ruled out (down-sampled TCGA at n=423 still gives ~18 hits vs 0) and TCGA effect sizes are
+unchanged when restricted to shared histologies — but the formal composition-matched test of the
+cohort effect gives p = 0.086, so that half stays a hypothesis.
 
 **Practical recommendation: assess replication by effect size, not significance** — directions are
 100% consistent; magnitude is what moves.
@@ -46,6 +51,7 @@ python src/01_build_matrix.py       # extract panels from both RNA sources -> an
 python src/02_audit.py             # 60 associations x 3 settings + reproducibility metrics
 python src/03_power_check.py       # down-sampling + effect-attenuation tests
 python src/04_histology_matched.py # is it tumour-type composition?
+python src/06_formal_test.py     # pooled permutation test of the cohort effect
 python src/05_figures.py
 ```
 
